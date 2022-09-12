@@ -1,0 +1,33 @@
+logging:
+  file.name: logs/visitor-parking-mangement.log
+
+application:
+  title: Besucher-Parking Verwaltung
+  version: 1.0.0
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    url: jdbc:h2:file:./data/application;DB_CLOSE_ON_EXIT=FALSE
+  jpa:
+    properties:
+      javax:
+        persistence:
+          schema-generation:
+            scripts:
+              action: create
+              create-target: src\main\resources\created.sql
+              create-source: metadata
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+    generate-ddl: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
