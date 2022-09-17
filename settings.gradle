@@ -1,1 +1,3 @@
 rootProject.name = 'visitor-parking-management'
+include 'visitor-parking-backend'
+

@@ -5,8 +5,6 @@
 /logs/
 *.log
 
-created.sql
-
 # Ignore Gradle GUI config
 gradle-app.setting
 

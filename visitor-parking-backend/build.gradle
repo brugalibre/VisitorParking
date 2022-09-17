@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'maven-publish'
+    id 'org.springframework.boot' version '3.0.0'
+}
+
+apply from: 'test.gradle'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+group 'com.brugalibre.vistor-parking'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'com.brugalibre.visitorparking.app.VisitorParkingManagementRestApplication'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+
+    implementation group: 'com.brugalibre', name: 'common-app-security', version: '1.0-SNAPSHOT'
+    implementation group: 'com.brugalibre', name: 'common-app-domain', version: '1.0-SNAPSHOT'
+
+    implementation group: 'com.h2database', name: 'h2', version: '2.1.214'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.0.0'
+
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    implementation 'org.projectlombok:lombok:1.18.24'
+}
+
+jar {
+    archiveBaseName = "${project.name}"
+    archiveVersion =  "${project.version}"
+}
+
+tasks.named('bootJar') {
+    launchScript()
+}
+
+publish {
+    dependsOn assemble
+}
